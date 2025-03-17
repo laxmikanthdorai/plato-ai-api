@@ -7,8 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// ✅ Debugging: Log API Key (This is temporary, remove after testing)
-console.log("Using OpenAI API Key:", process.env.OPENAI_API_KEY ? "Loaded" : "MISSING");
+// ✅ Debugging: Print API key in Render logs (DO NOT use in production)
+console.log("Loaded OpenAI API Key:", process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 10) + "..." : "MISSING");
 
 app.post("/chat", async (req, res) => {
     if (!req.body || !req.body.messages) {
@@ -35,11 +35,9 @@ app.post("/chat", async (req, res) => {
     }
 });
 
-// ✅ Add a GET route to check if API is running
 app.get("/", (req, res) => {
     res.send("Plato AI API is running!");
 });
 
-// ✅ Ensure the API listens on the correct port
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
