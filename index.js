@@ -1,13 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const fetch = require("node-fetch");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-// ✅ Fix: Ensure API handles POST /chat
+// ✅ Debugging: Log API Key (This is temporary, remove after testing)
+console.log("Using OpenAI API Key:", process.env.OPENAI_API_KEY ? "Loaded" : "MISSING");
+
 app.post("/chat", async (req, res) => {
-    if (!req.body.messages) {
+    if (!req.body || !req.body.messages) {
         return res.status(400).json({ error: "Missing 'messages' in request body" });
     }
 
