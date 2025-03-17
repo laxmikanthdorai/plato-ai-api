@@ -31,7 +31,7 @@ app.post("/chat", async (req, res) => {
     }
 });
 
-// ✅ Add default GET route for testing
+// ✅ Add a GET route to check if API is running
 app.get("/", (req, res) => {
     res.send("Plato AI API is running!");
 });
