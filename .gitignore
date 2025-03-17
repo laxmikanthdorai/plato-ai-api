@@ -136,4 +136,4 @@ dist
 .pnp.*
 
 .env
-nodes_modules
+node_modules
